@@ -1,0 +1,38 @@
+ext.flavorConfig = {
+
+    flavorDimensions "mode"
+    productFlavors {
+        dev {
+            dimension "mode"
+            ext.myApplicationIdSuffix = ".dev"
+            ext.myVersionNameSuffix = "-dev"
+            buildConfigField "String", "BASE_URL", "\"http://api.openweathermap.org/\""
+        }
+
+        staging {
+            dimension "mode"
+            ext.myApplicationIdSuffix = ".staging"
+            ext.myVersionNameSuffix = "-staging"
+            buildConfigField "String", "BASE_URL", "\"http://api.openweathermap.org/\""
+        }
+
+        production {
+            dimension "mode"
+            buildConfigField "String", "BASE_URL", "\"http://api.openweathermap.org/\""
+        }
+    }
+
+    productFlavors.all { flavor ->
+        if (flavor.hasProperty('myApplicationIdSuffix') && isApplicationProject()) {
+            flavor.applicationIdSuffix = flavor.myApplicationIdSuffix
+        }
+        if (flavor.hasProperty('myVersionNameSuffix') && isApplicationProject()) {
+            flavor.versionNameSuffix = flavor.myVersionNameSuffix
+        }
+    }
+
+}
+
+def isApplicationProject() {
+    return project.android.class.simpleName.startsWith('BaseAppModuleExtension')
+}
