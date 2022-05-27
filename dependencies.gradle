@@ -36,6 +36,6 @@ ext.versions = [
         koin                  : '3.1.5',
 
         lottieAnimationVersion: '5.0.3',
-        timber                : '5.0.1'
-
+        timber                : '5.0.1',
+        locationFetcher       : '9.0.0'
 ]
