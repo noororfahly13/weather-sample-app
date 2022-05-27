@@ -1,27 +1,19 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
-
-apply from: "${rootProject.projectDir}/flavors.gradle"
-
 
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
 
     defaultConfig {
-        applicationId "come.example.weathersample"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -30,7 +22,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             zipAlignEnabled true
             //shrinkResources false
-            with flavorConfig
         }
         release {
             //signingConfig signingConfigs.debug
@@ -42,9 +33,6 @@ android {
             zipAlignEnabled true
             // Enables resource shrinking, which is performed by the Android Gradle plugin.
             //shrinkResources true
-
-
-            with flavorConfig
         }
     }
 
@@ -52,35 +40,17 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion versions.compose
-    }
-
-    packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
-
-    with flavorConfig
 }
 
 dependencies {
-
-    implementation fileTree(dir: "libs", include: ["*.jar"])
 
     // android x
     implementation "androidx.core:core-ktx:$versions.coreKtx"
     implementation "androidx.appcompat:appcompat:$versions.appCompat"
     implementation "com.google.android.material:material:$versions.material"
-    implementation project(path: ':core')
 
     // testing
     testImplementation "junit:junit:$versions.junit"
@@ -96,48 +66,10 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$versions.moshi"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi"
 
+    // Logging
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinxCoroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlinxCoroutines"
-
-    //ROOM DB
-    implementation "androidx.room:room-runtime:$versions.room"
-    kapt "androidx.room:room-compiler:$versions.room"
-    implementation "androidx.room:room-ktx:$versions.room"
-    implementation "androidx.room:room-paging:$versions.room"
-
-    // Paging 3.0
-    implementation "androidx.paging:paging-compose:$versions.pagingCompose"
-
-    // compose
-    implementation "androidx.compose.ui:ui:$versions.compose"
-    implementation "androidx.compose.material:material:$versions.compose"
-    implementation "androidx.compose.ui:ui-tooling-preview:$versions.compose"
-    implementation "androidx.activity:activity-compose:$versions.activityCompose"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$versions.compose"
-    debugImplementation "androidx.compose.ui:ui-tooling:$versions.compose"
-    implementation "androidx.navigation:navigation-compose:$versions.navigationCompose"
-
-    // Lifecycle
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
-
-    implementation "androidx.legacy:legacy-support-v4:$versions.legacySupport"
-
-    // Coil
-    implementation("io.coil-kt:coil-compose:$versions.coil")
-
-    // System UI Controller - Accompanist
-    implementation "com.google.accompanist:accompanist-systemuicontroller:$versions.systemuicontroller"
-
-    // DI
-    implementation "io.insert-koin:koin-android:$versions.koin"
-    implementation "io.insert-koin:koin-androidx-compose:$versions.koin"
-
-    // Animation
-    implementation "com.airbnb.android:lottie:$versions.lottieAnimationVersion"
-
-    // Logging
-    implementation "com.jakewharton.timber:timber:$versions.timber"
 }
