@@ -8,6 +8,7 @@ import com.example.search_and_favorite.data.repository.SearchAndFavoriteReposito
 import com.example.search_and_favorite.domain.repository.SearchAndFavoriteRepository
 import com.example.search_and_favorite.domain.usecases.*
 import com.example.search_and_favorite.presentation.city.CityViewModel
+import com.example.search_and_favorite.presentation.favorite.FavoriteViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -19,6 +20,8 @@ val searchAndFavoriteModule = module {
     single { GetFavoriteCitiesUseCase(get()) }
     single { CacheFavoriteCityUseCase(get()) }
     single { CheckCityFavoriteUseCase(get()) }
-    single { SearchAndFavoriteUseCases(get(), get(), get(), get()) }
+    single { RemoveFavoriteCityUseCase(get()) }
+    single { SearchAndFavoriteUseCases(get(), get(), get(), get(), get()) }
     viewModel { CityViewModel(get()) }
+    viewModel { FavoriteViewModel(get()) }
 }

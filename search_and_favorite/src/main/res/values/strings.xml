@@ -9,4 +9,6 @@
     <string name="search">Search Cities</string>
     <string name="add_favorite">Add to Favorites</string>
     <string name="favorite_city">This is a Favorite City</string>
+    <string name="favorite_cities">Favorite Cities</string>
+
 </resources>

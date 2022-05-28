@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -37,6 +38,7 @@ fun WeatherView(weather: Weather) {
     val desc = weather.current?.weather?.firstOrNull()?.description?.uppercase(Locale.getDefault()) ?: ""
     val icon = weather.current?.weather?.firstOrNull()?.icon
     Column() {
+        Spacer(modifier = Modifier.height(16.dp))
         Text(text = currentLocation, fontSize = TextUnit(16F, TextUnitType.Sp), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
         icon?.let {
             Image(
@@ -63,19 +65,23 @@ fun WeatherView(weather: Weather) {
         Spacer(modifier = Modifier.height(2.dp))
         Text(text = main, fontSize = TextUnit(14F, TextUnitType.Sp), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = desc, modifier = Modifier.padding(start = 32.dp))
-        Text(text = stringResource(R.string.temp_description, temp), fontSize = TextUnit(10F, TextUnitType.Sp), modifier = Modifier.padding(start = 32.dp))
-        Text(text = stringResource(R.string.wind_speed, wind), fontSize = TextUnit(10F, TextUnitType.Sp), modifier = Modifier.padding(start = 32.dp))
-        Text(text = stringResource(R.string.humidity, humidity), fontSize = TextUnit(10F, TextUnitType.Sp), modifier = Modifier.padding(start = 32.dp))
-        icon?.let {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(150.dp),
-                painter = painterResource(mapTempToImage(it)),
-                contentDescription = null,
-                contentScale = ContentScale.Fit
-            )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Column() {
+                Text(text = desc, modifier = Modifier.padding(start = 32.dp))
+                Text(text = stringResource(R.string.temp_description, temp), fontSize = TextUnit(10F, TextUnitType.Sp), modifier = Modifier.padding(start = 32.dp))
+                Text(text = stringResource(R.string.wind_speed, wind), fontSize = TextUnit(10F, TextUnitType.Sp), modifier = Modifier.padding(start = 32.dp))
+                Text(text = stringResource(R.string.humidity, humidity), fontSize = TextUnit(10F, TextUnitType.Sp), modifier = Modifier.padding(start = 32.dp))
+            }
+            icon?.let {
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp),
+                    painter = painterResource(mapTempToImage(it)),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit
+                )
+            }
         }
         weather.daily?.let {
             LazyRow(contentPadding = PaddingValues(start = 16.dp)) {

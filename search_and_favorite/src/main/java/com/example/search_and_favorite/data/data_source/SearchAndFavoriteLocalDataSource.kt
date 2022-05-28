@@ -8,6 +8,8 @@ interface SearchAndFavoriteLocalDataSource {
     suspend fun getFavoriteCities(): List<FavoriteCityEntity>?
     suspend fun cacheFavoriteCity(favoriteCityEntity: FavoriteCityEntity)
     suspend fun isCityFavorite(name: String): Boolean
+    suspend fun removeFavoriteCity(favoriteCityEntity: FavoriteCityEntity)
+
 }
 
 class SearchAndFavoriteLocalDataSourceImpl(private val dao: SearchAndFavoriteDao) : SearchAndFavoriteLocalDataSource {
@@ -21,6 +23,10 @@ class SearchAndFavoriteLocalDataSourceImpl(private val dao: SearchAndFavoriteDao
 
     override suspend fun isCityFavorite(name: String): Boolean {
         return dao.getFavoriteCity(name) != null
+    }
+
+    override suspend fun removeFavoriteCity(favoriteCityEntity: FavoriteCityEntity) {
+        return dao.removeFavoriteCity(favoriteCityEntity.name)
     }
 
 }

@@ -18,5 +18,7 @@ interface SearchAndFavoriteDao {
     @Query("SELECT * FROM FavoriteCityEntity")
     suspend fun getFavoriteCities(): List<FavoriteCityEntity>
 
+    @Query("DELETE FROM FavoriteCityEntity WHERE name = :name")
+    suspend fun removeFavoriteCity(name: String)
 
 }

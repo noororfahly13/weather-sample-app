@@ -52,5 +52,9 @@ class SearchAndFavoriteRepositoryImpl(
     override suspend fun isCityFavorite(name: String): Boolean {
         return localDataSource.isCityFavorite(name)
     }
+
+    override suspend fun removeFavoriteCity(favoriteCity: FavoriteCity) {
+        localDataSource.removeFavoriteCity(favoriteCity.toEntity())
+    }
 }
 

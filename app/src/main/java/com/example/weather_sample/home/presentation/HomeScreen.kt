@@ -1,17 +1,20 @@
 package com.example.weather_sample.home.presentation
 
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.example.core.common_ui.CenteredView
+import com.example.core.navigation.Screen
 import com.example.weather_sample.R
 import com.example.weather_sample.home.presentation.composable.SearchView
 import com.example.weather_sample.home.presentation.composable.WeatherView
-import com.example.weather_sample.navigation.Screen
 import com.example.weather_sample.ui.theme.AppContentColor
 import com.example.weather_sample.ui.theme.AppThemeColor
 import com.freelapp.locationfetcher.compose.LocalLocationFetcher
@@ -49,6 +52,11 @@ fun HomeScreen(
                 navController.navigate(route = Screen.City.passName(it))
             }
         },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { navController.navigate(route = Screen.Favorite.route) }, backgroundColor = MaterialTheme.colors.primary) {
+                Icon(Icons.Filled.Favorite, "favorite list", tint = Color.White)
+            }
+        },
         content = {
             LocationFetcher(
                 requestConfig = {
@@ -60,8 +68,9 @@ fun HomeScreen(
             ) {
                 val locationResult = LocalLocationFetcher.current.locationResult
                 viewModel.updateCurrentLocation(locationResult?.lastLocation?.latitude, locationResult?.lastLocation?.longitude)
+
                 when (homeState) {
-                    is HomeScreenState.Data -> CenteredView { WeatherView((homeState as HomeScreenState.Data).weather) }
+                    is HomeScreenState.Data -> WeatherView((homeState as HomeScreenState.Data).weather)
                     is HomeScreenState.Error -> CenteredView { Text("Error: ${(homeState as HomeScreenState.Error).error}") }
                     is HomeScreenState.Idle, HomeScreenState.Loading -> CenteredView { CircularProgressIndicator() }
                     is HomeScreenState.NoCurrentLocation -> CenteredView { Text(stringResource(id = R.string.no_current_location)) }

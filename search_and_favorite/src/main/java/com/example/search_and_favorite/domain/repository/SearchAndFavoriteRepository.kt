@@ -10,4 +10,5 @@ interface SearchAndFavoriteRepository {
     suspend fun getFavoriteCities(): List<FavoriteCity>
     suspend fun cacheFavoriteCity(favoriteCity: FavoriteCity)
     suspend fun isCityFavorite(name: String): Boolean
+    suspend fun removeFavoriteCity(favoriteCity: FavoriteCity)
 }

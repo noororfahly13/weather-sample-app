@@ -4,5 +4,6 @@ data class SearchAndFavoriteUseCases(
     val getCityWeatherUseCase: GetCityWeatherUseCase,
     val cacheFavoriteCityUseCase: CacheFavoriteCityUseCase,
     val getFavoriteCitiesUseCase: GetFavoriteCitiesUseCase,
-    val checkCityFavoriteUseCase: CheckCityFavoriteUseCase
+    val checkCityFavoriteUseCase: CheckCityFavoriteUseCase,
+    val removeFavoriteCityUseCase: RemoveFavoriteCityUseCase
 )

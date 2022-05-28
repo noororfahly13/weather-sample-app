@@ -6,7 +6,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.core.navigation.Screen
 import com.example.search_and_favorite.presentation.city.CityScreen
+import com.example.search_and_favorite.presentation.favorite.FavoriteScreen
 import com.example.weather_sample.home.presentation.HomeScreen
 
 @Composable
@@ -27,6 +29,10 @@ fun NavGraph(navController: NavHostController) {
         ) { backStackEntry ->
             backStackEntry.arguments?.getString("name")
                 ?.let { CityScreen(navController, it) }
+        }
+
+        composable(route = Screen.Favorite.route) {
+            FavoriteScreen(navController = navController)
         }
     }
 }
