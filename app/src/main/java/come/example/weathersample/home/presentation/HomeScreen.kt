@@ -13,6 +13,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import come.example.weathersample.R
 import come.example.weathersample.home.presentation.composable.CenteredView
+import come.example.weathersample.home.presentation.composable.WeatherView
 import come.example.weathersample.ui.theme.AppContentColor
 import come.example.weathersample.ui.theme.AppThemeColor
 import org.koin.androidx.compose.getViewModel
@@ -54,7 +55,7 @@ fun HomeScreen(
                 val locationResult = LocalLocationFetcher.current.locationResult
                 viewModel.updateCurrentLocation(locationResult?.lastLocation?.latitude, locationResult?.lastLocation?.longitude)
                 when (homeState) {
-                    is HomeScreenState.Data -> CenteredView { Text("Data") }
+                    is HomeScreenState.Data -> CenteredView { WeatherView((homeState as HomeScreenState.Data).weather) }
                     is HomeScreenState.Error -> CenteredView { Text("Error: ${(homeState as HomeScreenState.Error).error}") }
                     is HomeScreenState.Idle, HomeScreenState.Loading -> CenteredView { CircularProgressIndicator() }
                     is HomeScreenState.NoCurrentLocation -> CenteredView { Text(stringResource(id = R.string.no_current_location)) }

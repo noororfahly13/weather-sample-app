@@ -2,4 +2,8 @@
     <string name="app_name">Weather Sample</string>
     <string name="permission_location_rationale">In order to get the current location, we require the location permission to be granted.</string>
     <string name="no_current_location">No current location</string>
+    <string name="temp_celsius">%s \u2103</string>
+    <string name="temp_description">Temperature %s \u2103</string>
+    <string name="wind_speed">Wind Speed %s Meter/Sec</string>
+    <string name="humidity">Humidity %s</string>
 </resources>

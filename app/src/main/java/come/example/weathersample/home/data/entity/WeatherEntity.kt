@@ -7,8 +7,8 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 @Entity(primaryKeys = ["lat", "lng"])
 data class WeatherEntity(
-    @Json(name = "id")
-    val id: Int?,
+    @Json(name = "city")
+    var city: List<CityEntity>?,
     @Json(name = "lat")
     val lat: Double,
     @Json(name = "lon")
@@ -24,12 +24,13 @@ data class WeatherEntity(
     }
 
     override fun hashCode(): Int {
-        var result = id ?: 0
-        result = 31 * result + (lat?.hashCode() ?: 0)
-        result = 31 * result + (lng?.hashCode() ?: 0)
+        var result = city?.hashCode() ?: 0
+        result = 31 * result + lat.hashCode()
+        result = 31 * result + lng.hashCode()
         result = 31 * result + (current?.hashCode() ?: 0)
         return result
     }
+
 }
 
 @JsonClass(generateAdapter = true)
