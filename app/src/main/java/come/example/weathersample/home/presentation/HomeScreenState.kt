@@ -8,5 +8,5 @@ sealed class HomeScreenState {
     object NoCurrentLocation : HomeScreenState()
     object Loading : HomeScreenState()
     data class Error(val error: String) : HomeScreenState()
-    data class Data(val movies: List<Weather>) : HomeScreenState()
+    data class Data(val weather: Weather) : HomeScreenState()
 }

@@ -1,14 +1,10 @@
 package come.example.weathersample.home.presentation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import com.freelapp.locationfetcher.compose.LocalLocationFetcher
@@ -16,6 +12,7 @@ import com.freelapp.locationfetcher.compose.LocationFetcher
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
 import come.example.weathersample.R
+import come.example.weathersample.home.presentation.composable.CenteredView
 import come.example.weathersample.ui.theme.AppContentColor
 import come.example.weathersample.ui.theme.AppThemeColor
 import org.koin.androidx.compose.getViewModel
@@ -57,18 +54,10 @@ fun HomeScreen(
                 val locationResult = LocalLocationFetcher.current.locationResult
                 viewModel.updateCurrentLocation(locationResult?.lastLocation?.latitude, locationResult?.lastLocation?.longitude)
                 when (homeState) {
-                    is HomeScreenState.Data -> Text("Data")
-                    is HomeScreenState.Error -> Text("Error: ${(homeState as HomeScreenState.Error).error}")
-                    is HomeScreenState.Idle, HomeScreenState.Loading -> Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        CircularProgressIndicator()
-                    }
-                    is HomeScreenState.NoCurrentLocation -> Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxSize()
-                    ) { Text(stringResource(id = R.string.no_current_location)) }
+                    is HomeScreenState.Data -> CenteredView { Text("Data") }
+                    is HomeScreenState.Error -> CenteredView { Text("Error: ${(homeState as HomeScreenState.Error).error}") }
+                    is HomeScreenState.Idle, HomeScreenState.Loading -> CenteredView { CircularProgressIndicator() }
+                    is HomeScreenState.NoCurrentLocation -> CenteredView { Text(stringResource(id = R.string.no_current_location)) }
                 }
             }
         }

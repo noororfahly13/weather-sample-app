@@ -28,7 +28,6 @@ abstract class NetworkBoundResource<ResultType, RequestType>(private val withPro
                 val call = createCall().first()
                 apiResponse = call ?: ApiErrorResponse("Unknown error")
 
-
                 apiResponse.let {
                     when (it) {
                         is ApiSuccessResponse -> {

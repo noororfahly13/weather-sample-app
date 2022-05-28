@@ -30,8 +30,8 @@ class HomeViewModel(
             viewModelScope.launch {
                 homeUseCases.getCurrentLocationWeather.invoke(lat, lng).collect { resource ->
                     _homeState.value = when (resource.status) {
-                        Status.SUCCESS -> HomeScreenState.Loading
-                        Status.ERROR -> HomeScreenState.Loading
+                        Status.SUCCESS -> if (resource.dataIsNull()) HomeScreenState.Error("Empty Data") else HomeScreenState.Data(weather = resource.data!!)
+                        Status.ERROR -> HomeScreenState.Error(resource.message ?: "Unknown error")
                         Status.LOADING -> HomeScreenState.Loading
                     }
                 }

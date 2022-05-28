@@ -6,4 +6,6 @@ object ConnectionEndPoint {
 
     const val WEATHER = VERSION + "weather"
 
+    const val ONE_CALL = VERSION + "onecall?exclude=minutely,hourly,alerts&units=metric"
+
 }
