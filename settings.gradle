@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "WeatherSample"
 include ':app'
 include ':core'
-include ':searchandfavorite'
+include ':search_and_favorite'

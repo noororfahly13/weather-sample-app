@@ -81,7 +81,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$versions.appCompat"
     implementation "com.google.android.material:material:$versions.material"
     implementation project(path: ':core')
-    implementation project(path: ':searchandfavorite')
+    implementation project(path: ':search_and_favorite')
 
     // testing
     testImplementation "junit:junit:$versions.junit"
