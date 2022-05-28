@@ -4,6 +4,8 @@
     <string name="no_current_location">No current location</string>
     <string name="temp_celsius">%s \u2103</string>
     <string name="temp_description">Temperature %s \u2103</string>
+    <string name="temp_min">Min %s \u2103</string>
+    <string name="temp_max">Max %s \u2103</string>
     <string name="wind_speed">Wind Speed %s Meter/Sec</string>
     <string name="humidity">Humidity %s</string>
 </resources>

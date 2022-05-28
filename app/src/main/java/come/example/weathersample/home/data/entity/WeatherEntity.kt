@@ -15,8 +15,9 @@ data class WeatherEntity(
     val lng: Double,
     @Json(name = "current")
     val current: CurrentWeatherEntity?,
-
-    ) {
+    @Json(name = "daily")
+    val daily: List<DailyWeatherEntity>?,
+) {
     override fun equals(other: Any?): Boolean {
         return if (other is WeatherEntity)
             other.lat == this.lat && other.lng == this.lng

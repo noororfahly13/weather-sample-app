@@ -4,7 +4,8 @@ data class Weather(
     val city: List<City>?,
     val lat: Double,
     val lng: Double,
-    val current: CurrentWeather?
+    val current: CurrentWeather?,
+    val daily: List<DailyWeather>?
 )
 
 data class WeatherDetails(

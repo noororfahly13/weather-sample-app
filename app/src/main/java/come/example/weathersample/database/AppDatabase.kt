@@ -8,7 +8,7 @@ import come.example.weathersample.home.data.entity.WeatherEntity
 
 @Database(
     entities = [WeatherEntity::class],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 @TypeConverters(value = [Convertors::class])

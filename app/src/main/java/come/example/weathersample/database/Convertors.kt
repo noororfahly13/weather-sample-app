@@ -6,6 +6,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import come.example.weathersample.home.data.entity.CityEntity
 import come.example.weathersample.home.data.entity.CurrentWeatherEntity
+import come.example.weathersample.home.data.entity.DailyWeatherEntity
 import come.example.weathersample.home.data.entity.WeatherDetailsEntity
 
 
@@ -67,9 +68,25 @@ open class Convertors {
     }
 
     @TypeConverter
-    fun toJson(data: List<CityEntity>): String {
+    fun toJsonCity(data: List<CityEntity>): String {
         val type = Types.newParameterizedType(List::class.java, CityEntity::class.java)
         val jsonAdapter = moshi.adapter<List<CityEntity>>(type)
+        return jsonAdapter.toJson(data)
+    }
+
+    @TypeConverter
+    fun fromJsonDailyList(string: String): List<DailyWeatherEntity>? {
+        if (TextUtils.isEmpty(string))
+            return null
+        val type = Types.newParameterizedType(List::class.java, DailyWeatherEntity::class.java)
+        val jsonAdapter = moshi.adapter<List<DailyWeatherEntity>>(type)
+        return jsonAdapter.fromJson(string)
+    }
+
+    @TypeConverter
+    fun toJsonDaily(data: List<DailyWeatherEntity>): String {
+        val type = Types.newParameterizedType(List::class.java, DailyWeatherEntity::class.java)
+        val jsonAdapter = moshi.adapter<List<DailyWeatherEntity>>(type)
         return jsonAdapter.toJson(data)
     }
 }
