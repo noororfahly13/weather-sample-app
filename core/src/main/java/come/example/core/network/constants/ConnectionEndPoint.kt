@@ -7,7 +7,7 @@ object ConnectionEndPoint {
 
     const val IMAGE = "http://openweathermap.org/img/wn/"
 
-    const val WEATHER = WEATHER_VERSION + "weather"
+    const val WEATHER = WEATHER_VERSION + "weather?units=metric"
 
     const val ONE_CALL = WEATHER_VERSION + "onecall?exclude=minutely,hourly,alerts&units=metric"
 

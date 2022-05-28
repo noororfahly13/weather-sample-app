@@ -24,5 +24,6 @@ val persistenceModule = module {
 
 
     single { get<AppDatabase>().homeDao() }
+    single { get<AppDatabase>().searchAndFavoriteDao() }
 
 }

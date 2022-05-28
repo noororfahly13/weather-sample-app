@@ -8,4 +8,5 @@
     <string name="temp_max">Max %s \u2103</string>
     <string name="wind_speed">Wind Speed %s Meter/Sec</string>
     <string name="humidity">Humidity %s</string>
+    <string name="search">Search Cities</string>
 </resources>

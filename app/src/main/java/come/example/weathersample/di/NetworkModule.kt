@@ -2,6 +2,7 @@ package come.example.weathersample.di
 
 import come.example.core.network.setup.NetworkResponseFactory
 import come.example.core.network.setup.RequestInterceptor
+import come.example.searchandfavorite.data.api.SearchAndFavoriteService
 import come.example.weathersample.BuildConfig
 import come.example.weathersample.home.data.api.HomeService
 import okhttp3.OkHttpClient
@@ -37,4 +38,6 @@ val networkModule = module {
     }
 
     single { get<Retrofit>().create(HomeService::class.java) }
+    single { get<Retrofit>().create(SearchAndFavoriteService::class.java) }
+
 }

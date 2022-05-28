@@ -16,6 +16,13 @@ android {
         consumerProguardFiles "consumer-rules.pro"
     }
 
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion versions.compose
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -72,4 +79,20 @@ dependencies {
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinxCoroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlinxCoroutines"
+
+    // compose
+    implementation "androidx.compose.ui:ui:$versions.compose"
+    implementation "androidx.compose.material:material:$versions.compose"
+    implementation "androidx.compose.ui:ui-tooling-preview:$versions.compose"
+    implementation "androidx.activity:activity-compose:$versions.activityCompose"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$versions.compose"
+    debugImplementation "androidx.compose.ui:ui-tooling:$versions.compose"
+    implementation "androidx.navigation:navigation-compose:$versions.navigationCompose"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+
+
 }

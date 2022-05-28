@@ -1,0 +1,12 @@
+<resources>
+    <string name="no_current_location">No city location</string>
+    <string name="temp_celsius">%s \u2103</string>
+    <string name="temp_description">Temperature %s \u2103</string>
+    <string name="temp_min">Min %s \u2103</string>
+    <string name="temp_max">Max %s \u2103</string>
+    <string name="wind_speed">Wind Speed %s Meter/Sec</string>
+    <string name="humidity">Humidity %s</string>
+    <string name="search">Search Cities</string>
+    <string name="add_favorite">Add to Favorites</string>
+    <string name="favorite_city">This is a Favorite City</string>
+</resources>

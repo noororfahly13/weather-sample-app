@@ -11,9 +11,11 @@ import com.freelapp.locationfetcher.compose.LocalLocationFetcher
 import com.freelapp.locationfetcher.compose.LocationFetcher
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
+import come.example.core.common_ui.CenteredView
 import come.example.weathersample.R
-import come.example.weathersample.home.presentation.composable.CenteredView
+import come.example.weathersample.home.presentation.composable.SearchView
 import come.example.weathersample.home.presentation.composable.WeatherView
+import come.example.weathersample.navigation.Screen
 import come.example.weathersample.ui.theme.AppContentColor
 import come.example.weathersample.ui.theme.AppThemeColor
 import org.koin.androidx.compose.getViewModel
@@ -42,6 +44,9 @@ fun HomeScreen(
         scaffoldState = scaffoldState,
         snackbarHost = { scaffoldState.snackbarHostState },
         topBar = {
+            SearchView {
+                navController.navigate(route = Screen.City.passName(it))
+            }
         },
         content = {
             LocationFetcher(

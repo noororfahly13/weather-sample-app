@@ -1,6 +1,7 @@
 package come.example.weathersample
 
 import android.app.Application
+import come.example.searchandfavorite.di.searchAndFavoriteModule
 import come.example.weathersample.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -21,7 +22,8 @@ class App : Application() {
                     repositoryModule,
                     useCaseModule,
                     viewModelModule,
-                    serviceModule
+                    serviceModule,
+                    searchAndFavoriteModule
                 )
             )
         }

@@ -38,7 +38,6 @@ fun WeatherView(weather: Weather) {
     val icon = weather.current?.weather?.firstOrNull()?.icon
     Column() {
         Text(text = currentLocation, fontSize = TextUnit(16F, TextUnitType.Sp), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
-        Spacer(modifier = Modifier.height(2.dp))
         icon?.let {
             Image(
                 modifier = Modifier
@@ -54,7 +53,6 @@ fun WeatherView(weather: Weather) {
                 contentScale = ContentScale.Fit
             )
         }
-        Spacer(modifier = Modifier.height(2.dp))
         Text(
             text = stringResource(R.string.temp_celsius, temp),
             fontSize = TextUnit(20F, TextUnitType.Sp),

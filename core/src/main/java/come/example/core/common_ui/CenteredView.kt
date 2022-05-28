@@ -1,4 +1,4 @@
-package come.example.weathersample.home.presentation.composable
+package come.example.core.common_ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

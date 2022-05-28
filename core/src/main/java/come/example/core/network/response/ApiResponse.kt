@@ -20,12 +20,13 @@ sealed class ApiResponse<T> {
                     ApiSuccessResponse(body)
                 }
             } else {
-                val msg = response.errorBody()?.string()
-                val errorMessage = if (msg.isNullOrEmpty()) {
-                    response.message()
-                } else {
-                    msg
-                }
+                val errorMessage = response.message()
+//                val msg = response.errorBody()?.string()
+//                val errorMessage = if (msg.isNullOrEmpty()) {
+//                    response.message()
+//                } else {
+//                    msg
+//                }
                 Timber.v(errorMessage ?: "Unknown error")
                 ApiErrorResponse(
                     errorMessage ?: "Unknown error"

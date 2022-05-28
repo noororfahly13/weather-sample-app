@@ -1,5 +1,6 @@
 package come.example.weathersample.home.domain.model
 
+
 data class Weather(
     val city: List<City>?,
     val lat: Double,
